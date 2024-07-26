@@ -44,7 +44,7 @@ jobs:
         run: cat deployment/manifests/log-output-deployment.yaml
 
       - name: Display current pingpong deployment file
-        run: cat deployment/manifests/pingpong-deployment.yaml
+        run: cat deployment/manifests/ping-pong-deployment.yaml
 
       - name: Update log-output deployment
         run: |
@@ -58,7 +58,7 @@ jobs:
         run: cat deployment/manifests/log-output-deployment.yaml
 
       - name: Display updated pingpong deployment file
-        run: cat deployment/manifests/pingpong-deployment.yaml
+        run: cat deployment/manifests/ping-pong-deployment.yaml
 
       - name: Commit and push changes
         run: |
