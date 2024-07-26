@@ -61,6 +61,8 @@ jobs:
         run: cat deployment/manifests/ping-pong-deployment.yaml
 
       - name: Commit and push changes
+        env:
+           GITHUB_TOKEN: ${{ secrets.LOG_DEP_ACCESS_TOKEN }}
         run: |
           cd deployment
           git config --global user.name "github-actions[bot]"
