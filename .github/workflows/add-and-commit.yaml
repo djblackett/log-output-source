@@ -38,11 +38,11 @@ jobs:
 
       - name: Update log-output deployment
         run: |
-          sed -i "s|image: djblackett/log-output:.*|image: djblackett/log-output:${{ github.sha }}|" deployment/log-output-deployment.yaml
+          sed -i "s|image: djblackett/log-output:.*|image: djblackett/log-output:${{ github.sha }}|" manifests/log-output-deployment.yaml
 
       - name: Update pingpong deployment
         run: |
-          sed -i "s|image: djblackett/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" deployment/pingpong-deployment.yaml
+          sed -i "s|image: djblackett/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" manifests/pingpong-deployment.yaml
 
       - name: Commit and push changes
         run: |
