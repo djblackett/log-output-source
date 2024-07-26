@@ -39,6 +39,13 @@ jobs:
       - name: List files in deployment directory
         run: ls -R deployment
 
+
+      - name: Display current log-output deployment file
+        run: cat deployment/manifests/log-output-deployment.yaml
+
+      - name: Display current pingpong deployment file
+        run: cat deployment/manifests/pingpong-deployment.yaml
+
       - name: Update log-output deployment
         run: |
           sed -i "s|image: .*/log-output:.*|image: djblackett/log-output:${{ github.sha }}|" deployment/manifests/log-output-deployment.yaml
@@ -46,6 +53,12 @@ jobs:
       - name: Update pingpong deployment
         run: |
           sed -i "s|image: .*/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/ping-pong-deployment.yaml
+
+      - name: Display updated log-output deployment file
+        run: cat deployment/manifests/log-output-deployment.yaml
+
+      - name: Display updated pingpong deployment file
+        run: cat deployment/manifests/pingpong-deployment.yaml
 
       - name: Commit and push changes
         run: |
