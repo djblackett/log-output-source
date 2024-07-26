@@ -36,13 +36,16 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: deployment
 
+      - name: List files in deployment directory
+        run: ls -R deployment
+
       - name: Update log-output deployment
         run: |
-          sed -i "s|image: djblackett/log-output:.*|image: djblackett/log-output:${{ github.sha }}|" manifests/log-output-deployment.yaml
+          sed -i "s|image: .*/log-output:.*|image: djblackett/log-output:${{ github.sha }}|" deployment/manifests/log-output-deployment.yaml
 
       - name: Update pingpong deployment
         run: |
-          sed -i "s|image: djblackett/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" manifests/pingpong-deployment.yaml
+          sed -i "s|image: .*/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/pingpong-deployment.yaml
 
       - name: Commit and push changes
         run: |
