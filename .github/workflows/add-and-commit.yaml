@@ -45,7 +45,7 @@ jobs:
 
       - name: Update pingpong deployment
         run: |
-          sed -i "s|image: .*/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/pingpong-deployment.yaml
+          sed -i "s|image: .*/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/ping-pong-deployment.yaml
 
       - name: Commit and push changes
         run: |
