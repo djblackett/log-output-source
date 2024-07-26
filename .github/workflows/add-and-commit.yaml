@@ -52,7 +52,7 @@ jobs:
 
       - name: Update pingpong deployment
         run: |
-          sed -i "s|image: PROJECT/PING_PONG_IMAGE|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/pingpong-deployment.yaml
+          sed -i "s|image: PROJECT/PING_PONG_IMAGE|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/ping-pong-deployment.yaml
 
       - name: Display updated log-output deployment file
         run: cat deployment/manifests/log-output-deployment.yaml
