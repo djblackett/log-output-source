@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: djblackett/logoutput-dep
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.LOG_DEP_ACCESS_TOKEN }}
           path: deployment
 
       - name: List files in deployment directory
