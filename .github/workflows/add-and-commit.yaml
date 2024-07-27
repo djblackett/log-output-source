@@ -24,10 +24,10 @@ jobs:
           docker build --tag "djblackett/log-output:${{ github.sha }}" ./log-output
           docker push "djblackett/log-output:${{ github.sha }}"
 
-      - name: Build and publish pingpong
+      - name: Build and publish ping-pong
         run: |-
-          docker build --tag "djblackett/pingpong:${{ github.sha }}" ./pingpong
-          docker push "djblackett/pingpong:${{ github.sha }}"
+          docker build --tag "djblackett/ping-pong:${{ github.sha }}" ./ping-pong
+          docker push "djblackett/ping-pong:${{ github.sha }}"
 
       - name: Checkout deployment repository
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
       - name: Display current log-output deployment file
         run: cat deployment/manifests/log-output-deployment.yaml
 
-      - name: Display current pingpong deployment file
+      - name: Display current ping-pong deployment file
         run: cat deployment/manifests/ping-pong-deployment.yaml
 
       - name: Update log-output deployment
@@ -53,13 +53,13 @@ jobs:
 
       - name: Update pingpong deployment
         run: |
-          sed -i "s|image: .*/pingpong:.*|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/pingpong-deployment.yaml
+          sed -i "s|image: .*/ping-pong:.*|image: djblackett/ping-pong:${{ github.sha }}|" deployment/manifests/ping-pong-deployment.yaml
           # sed -i "s|image: PROJECT/PING_PONG_IMAGE|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/ping-pong-deployment.yaml
 
       - name: Display updated log-output deployment file
         run: cat deployment/manifests/log-output-deployment.yaml
 
-      - name: Display updated pingpong deployment file
+      - name: Display updated ping-pong deployment file
         run: cat deployment/manifests/ping-pong-deployment.yaml
 
       - name: Commit and push changes
