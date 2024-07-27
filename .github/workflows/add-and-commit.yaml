@@ -36,15 +36,16 @@ jobs:
           token: ${{ secrets.PERSONAL_TOKEN }}
           path: deployment
 
-      - name: List files in deployment directory
-        run: ls -R deployment
+      #  debugging logs
+      # - name: List files in deployment directory
+      #   run: ls -R deployment
 
 
-      - name: Display current log-output deployment file
-        run: cat deployment/manifests/log-output-deployment.yaml
+      # - name: Display current log-output deployment file
+      #   run: cat deployment/manifests/log-output-deployment.yaml
 
-      - name: Display current ping-pong deployment file
-        run: cat deployment/manifests/ping-pong-deployment.yaml
+      # - name: Display current ping-pong deployment file
+      #   run: cat deployment/manifests/ping-pong-deployment.yaml
 
       - name: Update log-output deployment
         run: |
@@ -56,11 +57,12 @@ jobs:
           sed -i "s|image: .*/ping-pong:.*|image: djblackett/ping-pong:${{ github.sha }}|" deployment/manifests/ping-pong-deployment.yaml
           # sed -i "s|image: PROJECT/PING_PONG_IMAGE|image: djblackett/pingpong:${{ github.sha }}|" deployment/manifests/ping-pong-deployment.yaml
 
-      - name: Display updated log-output deployment file
-        run: cat deployment/manifests/log-output-deployment.yaml
+      #   debugging logs:
+      # - name: Display updated log-output deployment file
+      #   run: cat deployment/manifests/log-output-deployment.yaml
 
-      - name: Display updated ping-pong deployment file
-        run: cat deployment/manifests/ping-pong-deployment.yaml
+      # - name: Display updated ping-pong deployment file
+      #   run: cat deployment/manifests/ping-pong-deployment.yaml
 
       - name: Commit and push changes
         env:
@@ -72,19 +74,3 @@ jobs:
           git add .
           git commit -m "Update deployment images to ${{ github.sha }}"
           git push
-
-
-
-      # - name: Set up Kustomize
-      #   uses: imranismail/setup-kustomize@v2
-
-      # - name: Use right image
-      #   run: |-
-      #     kustomize edit set image log-output=djblackett/log-output:${{ github.sha }}
-      #     kustomize edit set image ping-pong=djblackett/pingpong:${{ github.sha }}
-
-      # - name: commit kustomization.yaml to GitHub
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     add: 'kustomization.yaml'
-      #     message: New version released ${{ github.sha }}
